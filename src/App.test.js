@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('button starts red', () => {
   render(<App />);
-  const linkElement = screen.getByText('Hey my Dudes');
-  expect(linkElement).toBeInTheDocument();
+  const colourButton = screen.getByRole('button', { name: 'Change to blue' });
+  expect(colourButton).toHaveStyle({ background: 'red' });
+  fireEvent.click(colourButton);
+  expect(colourButton).toHaveStyle({ background: 'blue' });
+  expect(colourButton).toHaveTextContent('Change to red');
 });
