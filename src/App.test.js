@@ -9,3 +9,14 @@ test('button starts red', () => {
   expect(colourButton).toHaveStyle({ background: 'blue' });
   expect(colourButton).toHaveTextContent('Change to red');
 });
+
+test('initial conditions', () => {
+  render(<App />);
+  //  check the button starts enabled and
+  const colourButton = screen.getByRole('button', { name: 'Change to blue' });
+  expect(colourButton).toBeEnabled();
+
+  // check that the checkbow starts unchecked
+  const checkbox = screen.getByRole('checkbox');
+  expect(checkbox).not.toBeChecked();
+});
