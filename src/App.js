@@ -1,14 +1,16 @@
 import { useState } from 'react';
 
 export function replaceCamelCaseWithSpaces(colourName) {
+  // regular expression
   return colourName.replace(/\B([A-Z])\B/g, ' $1');
 }
 
 function App() {
-  const [buttonColour, setButtonColour] = useState('red');
+  const [buttonColour, setButtonColour] = useState('MediumVioletRed');
   const [disabled, setDisabled] = useState(false);
 
-  const newButtonColour = buttonColour === 'red' ? 'blue' : 'red';
+  const newButtonColour =
+    buttonColour === 'MediumVioletRed' ? 'MidnightBlue' : 'MediumVioletRed';
 
   return (
     <div className='App'>
@@ -20,7 +22,7 @@ function App() {
         onClick={() => setButtonColour(newButtonColour)}
         disabled={disabled}
       >
-        Change to {newButtonColour}
+        Change to {replaceCamelCaseWithSpaces(newButtonColour)}
       </button>
       <br />
       <input
