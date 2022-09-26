@@ -1,5 +1,9 @@
 import { useState } from 'react';
 
+export function replaceCamelCaseWithSpaces(colourName) {
+  return colourName.replace(/\B([A-Z])\B/g, ' $1');
+}
+
 function App() {
   const [buttonColour, setButtonColour] = useState('red');
   const [disabled, setDisabled] = useState(false);

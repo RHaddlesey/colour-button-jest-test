@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
+import { replaceCamelCaseWithSpaces } from './App';
 
 test('button starts red', () => {
   render(<App />);
@@ -70,4 +71,19 @@ test('disable button should turn grey and reverts back to blue when enabled', ()
   // enable button
   fireEvent.click(checkbox);
   expect(colourButton).toHaveStyle('background-color: blue');
+});
+
+// unit test
+describe('spaces before camelCase capital letters', () => {
+  test('works for no inner capital letter ~ red', () => {
+    expect(replaceCamelCaseWithSpaces('Red')).toBe('Red');
+  });
+  test('works for one inner captial capital letter ~ darkRed', () => {
+    expect(replaceCamelCaseWithSpaces('MidnightBlue')).toBe('Midnight Blue');
+  });
+  test('works for multi capitals ~ deepDarkRed', () => {
+    expect(replaceCamelCaseWithSpaces('MediumVioletRed')).toBe(
+      'Medium Violet Red'
+    );
+  });
 });
